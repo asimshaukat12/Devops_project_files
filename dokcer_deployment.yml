@@ -1,0 +1,18 @@
+---
+- hosts: docker
+  tasks: 
+
+  - name: Stoping container
+    command: docker stop regappcont
+    ignore_errors: yes
+
+  - name: Deleting container
+    command: docker rm regappcont
+    ignore_errors: yes
+  
+  - name: Deleting image
+    command: docker rmi asimshaukat777/regapp
+    ignore_errors: yes
+
+  - name: Creating Container
+    command: docker run -d --name regappcont -p 8082:8080 asimshaukat777/regapp

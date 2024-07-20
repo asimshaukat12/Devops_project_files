@@ -1,0 +1,12 @@
+---
+- hosts: kubernetes
+  user: root
+  tasks:
+    - name: Deploy regapp on kubernetes
+      command: kubectl apply -f regapp-deployment.yml
+
+    - name: Deploy regapp on kubernetes
+      command: kubectl apply -f regapp-service.yml
+
+    - name: UPdate deployment with new pods if image updated in dokcerhub
+      command: kubectl rollout restart deployment.apps/asim-regapp 
